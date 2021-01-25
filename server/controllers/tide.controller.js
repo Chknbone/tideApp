@@ -1,9 +1,9 @@
 const {Tide }= require('../models/tide.models');
 
-module.exports.index = (request, response) => {
-    response.json({
-       message: "Hola Mundo!"
-    });
+module.exports.getAllTides = (_request, response) => {
+    Tide.find()
+        .then((tide) => response.json(tide))
+        .catch((error) => response.json(error))
 }
 
 module.exports.createTide = (request, response) => {
