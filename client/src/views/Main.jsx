@@ -10,6 +10,7 @@ const Main = () => {
                 <h1>What's the Tide?</h1>
             </nav>
 
+            <h1>Go go GO, do what you want.</h1>
             <div className="calendarMain">
                 <Calendar path="/" />
             </div>
