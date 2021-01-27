@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import Calendar from '../components/Calendar';
+import Test from '../components/Test';
 
 const Main = () => {
     
@@ -10,10 +10,11 @@ const Main = () => {
                 <h1>What's the Tide?</h1>
             </nav>
 
-            <h1>Go go GO, do what you want.</h1>
-            <div className="calendarMain">
-                <Calendar path="/" />
+            <h1>Go go GO, do what you want. Text from Main.jsx</h1>
+            <div>
+                <Test path="/" />
             </div>
+            
         </div>
     )
 }
