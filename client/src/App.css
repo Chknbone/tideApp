@@ -1,6 +1,50 @@
 .App {
   text-align: center;
+
 }
+/* pop up window */
+.modal-header{
+  background-color: rgb(30, 157, 193);
+  font-size: 20px;
+  /* height: 100px; */
+}
+.modal-footer button{
+  background-color: rgb(73, 179, 208);
+}
+
+.modal {
+  background-image: url("images/waves.jpg");
+  
+}
+.modal-footer close{
+  background-color:blue
+}
+
+
+/* .container {
+  background-image: url("images/waves.jpg");
+  
+} */
+/* .modal-body {
+  background-color: blue;
+} */
+
+/* img {
+  height:200px;
+  width:950px;
+  opacity: .5;
+} */
+/* header */
+.text-center {
+  /* background-color: rgb(80, 194, 255); */
+  height: 80px;
+  font-size: 20px;
+} 
+.text-center h3{
+font-size: 50px;
+
+}
+
 
 /* .react-calendar__navigation {
 
@@ -43,8 +87,5 @@
   /* opacity: .2; */
 
 
-/* div{
-  background-color: rgb(240, 240, 240);
-} */ 
 
   

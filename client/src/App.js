@@ -15,27 +15,41 @@ import $ from 'jquery';
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
-
+// import background from "./waves.jpg"
 function App() {
   return (
+//    <div style={{ backgroundImage: "url(./waves.jpg)" }}>
+
+// </div>
+
+
     <div className="MainDiv">
-      <div class="jumbotron text-center">
+      <body>
+      <div class="text-center">
           <h3>Tidal</h3>
       </div>
+      {/* <img src="https://news.mit.edu/sites/default/files/styles/news_article__image_gallery/public/images/201602/MIT-Rogue-Waves_0.jpg?itok=z9m-CjfH" /> */}
       
       <div className="container">
+          
           <FullCalendar
+          header={{
+            left: "prev,next",
+            center: "title",
+            right: "dayGridMonth,timeGridWeek,timeGridDay"
+          }}
             plugins={[ dayGridPlugin, interactionPlugin ]}
-            //Dayclick open sweetalert
             dateClick={function(arg) {
               $("#myModal").modal("show");
               $(".modal-body").html("");
               $(".modal-body").html("<h3>"+arg.dateStr+"</h3>");
+              
             }}
+          
             initialView="dayGridMonth"
+            
             events={[
-              { title: 'event 1', date: '2020-07-01' },
-              { title: 'event 2', date: '2020-07-02' }
+              {}
             ]}
           />
         </div>
@@ -58,9 +72,9 @@ function App() {
               </div>
             </div>
           </div>
-      
+          </body>
     </div>
-  );
-}
+  )
+          }
 
 export default App;
