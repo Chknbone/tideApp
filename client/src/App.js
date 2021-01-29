@@ -1,32 +1,45 @@
-import React from 'react';
-
+import React, {useState, useEffect} from 'react';
 import './App.css';
 
-//Bootstrap libraries
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
-//jquery, popper.js libraries for bootstrap modal
 import 'jquery/dist/jquery.min.js';
 import 'popper.js/dist/umd/popper.min.js'
 import $ from 'jquery';
  
-//Here are the modules for fullcalendar and dayclick event
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
-import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
-// import background from "./waves.jpg"
-function App() {
-  return (
-//    <div style={{ backgroundImage: "url(./waves.jpg)" }}>
+import interactionPlugin from "@fullcalendar/interaction"; 
+import axios from 'axios';
 
-// </div>
+function App() {
+
+  const [thisthing, setthisthing] = useState([])
+  const [beginDate, setBeginDate] = useState([])
+  const [endDate, setEndDate] = useState([])
+
+   const onChangeHandler = () => {
+        setBeginDate(this.date);
+        setEndDate(this.date);
+    }
+
+    useEffect(()=>{
+        axios.get(`https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?product=predictions&date=${beginDate}&datum=MLLW&station=9444900&time_zone=lst_ldt&units=english&interval=hilo&format=json`)
+            .then(res=>{
+                setthisthing(res.data.predictions)
+                console.log(res.data.predictions)              
+            } )
+    }, [])
+
+  return (
 
 
     <div className="MainDiv">
       <body>
       <div class="text-center">
           <h3>Tidal</h3>
+        
       </div>
       {/* <img src="https://news.mit.edu/sites/default/files/styles/news_article__image_gallery/public/images/201602/MIT-Rogue-Waves_0.jpg?itok=z9m-CjfH" /> */}
       
@@ -47,9 +60,10 @@ function App() {
             }}
           
             initialView="dayGridMonth"
-            
             events={[
-              {}
+              // { title: 'event', date: '2021-01-27' },
+              // { title: 'event2', date: '2021-01-27' }
+            
             ]}
           />
         </div>
@@ -59,6 +73,24 @@ function App() {
               
                 <div class="modal-header">
                   <h4 class="modal-title align-center">Date is Below</h4>
+                  <div>
+          {thisthing.map(aThing => {
+                        return(
+                        
+                        <div>
+                            <div className="box" onChange={onChangeHandler}>
+                            <p>Water Depth:{aThing.v}</p>
+                            </div>
+                            <div className="box" onChange={onChangeHandler}>
+                            <p>TimeStamp: {aThing.t}</p>
+                            </div>
+                            <div className="box" onChange={onChangeHandler}>
+                            <p>High/Low: {aThing.type}</p>
+                            </div>
+                        </div>
+                    )})
+                }
+        </div>
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 
